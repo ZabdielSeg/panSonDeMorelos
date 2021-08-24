@@ -10,9 +10,13 @@
    </head>
 
    <nav>
+      {{#if user}}
+      <p><b>Welcome {{user.username}}</b></p>
+      <a href="/logout">Logout</a>
+      {{else}}
       <a href="/signup">Signup</a>
       <a href="/login">Login</a>
-      <a href="/logout">Logout</a>
+      {{/if}}
    </nav>
 
    <body>

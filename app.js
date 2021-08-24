@@ -8,6 +8,7 @@ require("./db");
 // Handles http requests (express is node js framework)
 // https://www.npmjs.com/package/express
 const express = require("express");
+const flash = require('connect-flash');
 
 // Handles the handlebars
 // https://www.npmjs.com/package/hbs
@@ -17,6 +18,10 @@ const app = express();
 
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
 require("./config")(app);
+
+
+app.use(flash());
+require('./passport')(app);
 
 const projectName = "panSonDeMorelos";
 const capitalized = (string) => string[0].toUpperCase() + string.slice(1).toLowerCase();
