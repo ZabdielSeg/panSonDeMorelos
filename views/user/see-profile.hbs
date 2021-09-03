@@ -4,8 +4,15 @@
     <p class="see-profile-info"><i>"{{description}}"</i></p>
 </div>
 <div class="visit-profile">
-    <div>
+    <div class="caption-style-4">
         <img src="{{profileImageUrl}}" alt="">
+        <div class="caption">
+            <div class="blur"></div>
+            <div class="caption-text">
+                <h3>Cities where you can find us</h3>
+                <p>{{citiesWhereFound}}</p>
+            </div>
+        </div>
     </div>
     <div>
         {{#each panes}}
@@ -36,11 +43,8 @@
         </form>
     </div>
 </div>
-<p>{{citiesWhereFound}}</p>
 {{#if location.coordinates}}
 <div id="mymap"></div>
-{{else}}
-<h4>Add a map</h4>
 {{/if}}
 {{/with}}
 

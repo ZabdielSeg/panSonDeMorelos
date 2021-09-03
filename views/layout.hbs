@@ -20,14 +20,16 @@
          <p><b>Welcome {{user.username}}</b></p>
          {{/if}}
       </div>
-      <ul class="userOn">
+      <ul>
          <li><a href="/" class="effect"><span>Main page</span></a></li>
          <li><a href="/my-profile" class="effect"><span>My profile</span></a></li>
+         {{#if user.isBakery}}
          <li><a href="/create-post" class="effect"><span>Add a pan</span></a></li>
+         {{/if}}
          <li><a href="/logout" class="effect"><span>Logout</span></a></li>
       </ul> 
       {{else}}
-      <ul class="userOff">
+      <ul>
          <li><a href="/signup" class="effect"><span>Signup</span></a></li>
          <li><a href="/login" class="effect"><span>Login</span></a></li>
       </ul>

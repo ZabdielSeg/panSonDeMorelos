@@ -1,13 +1,44 @@
+<h2 id="bakeryId" data-id="{{user._id}}">Your profile {{user.username}}</h2>
 <div>
-<h2>Your profile {{user.username}}</h2>
-<a href="/create-post">Add a pan to the list</a>
-<a href="/my-profile/edit-profile">Edit my Info</a>
+    <a href="/create-post">Add a pan to the list</a>
+    <a href="/my-profile/edit-profile">Edit my Info</a>
 </div>
-{{#each user.panes}}
-<div class="each-user-pan-card">
-    <img src="{{imageUrl}}" alt="pan-picture" width="50px">
-    <p>{{name}}</p>
-    <p>{{description}}</p>
-    <a href="/edit-pan/{{_id}}">Edit pan</a>
+<div>
+    <img src="{{user.profileImageUrl}}" alt="" width="100px">
+    <p>{{user.description}}</p>
 </div>
-{{/each}}
+<div>
+    <div>
+    {{#each user.panes}}
+    <div>
+        <img src="{{imageUrl}}" alt="pan-picture" width="50px">
+        <p>{{name}}</p>
+        <p>{{description}}</p>
+        <a href="/edit-pan/{{_id}}">Edit pan</a>
+    </div>
+    {{/each}}
+    </div>
+    <div>
+        {{#each user.reviews}}
+        <p>{{owner.username}}</p>
+        <p>{{comment}}</p>
+        {{/each}}
+    </div>
+</div>
+<div>
+    {{#if user.location.coordinates}}
+    <p>The main bakery is here:</p>
+    <div id="mymap"></div>
+    {{else}}
+    <p>Let the others know where the main bakery is. Add latitude and longitud to your <a href="/my-profile/edit-profile">information</a></p>
+    {{/if}}
+</div>
+
+
+<!--  Axios CDN  -->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<!--  Google Maps Key  -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJes2aBMTuU0VZoWtQF9c2RK_yLBBk9EM">
+</script>
+<!--  Connect main.js  -->
+<script type="text/javascript" src="/js/addMap.js"></script>

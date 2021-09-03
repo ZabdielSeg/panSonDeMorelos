@@ -16,9 +16,9 @@ passport.use(
             User.findOne({ googleID: profile.id })
                 .then(user => {
                     if (user) {
-                        User.findOneAndUpdate({ googleID: profile.id }, { username: profile.displayName, profileImageUrl: profile._json.picture }, { new: true })
-                            .then(() => done(null))
-                            .catch(err => done(err))
+                        // User.findOneAndUpdate({ googleID: profile.id }, { username: profile.displayName, profileImageUrl: profile._json.picture }, { new: true })
+                        //     .then(() => done(null))
+                        //     .catch(err => done(err))
                         done(null, user);
                         return;
                     }

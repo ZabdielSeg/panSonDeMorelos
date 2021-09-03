@@ -35,8 +35,7 @@ router.get("/signup", isLoggedOut, (req, res) => {
 });
 
 router.post("/signup", fileUploader.single('profileImageUrl'), isLoggedOut, (req, res) => {
-  const { username, password, email, isBakery, citiesWhereFound } = req.body;
-  const finalCities = citiesWhereFound.map(city => city.replace(',', ', '))
+  const { username, password, email, isBakery, citiesWhereFound, longitude, latitude } = req.body;
 
   if (!username) {
     return res
@@ -86,7 +85,11 @@ router.post("/signup", fileUploader.single('profileImageUrl'), isLoggedOut, (req
           password: hashedPassword,
           citiesWhereFound,
           profileImageUrl: req.file.path,
-          isBakery: Boolean(isBakery)
+          isBakery: Boolean(isBakery),
+          location: {
+            type: 'Point',
+            coordinates: [longitude, latitude]
+          }
         });
       })
       .then((user) => {

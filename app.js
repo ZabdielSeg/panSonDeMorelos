@@ -33,6 +33,13 @@ const User = require('./models/User.model');
 app.use((req, res, next) => {
   User.findById(req.user)
     .populate('panes')
+    .populate({
+      path: 'reviews',
+      populate: {
+          path: 'owner',
+          model: 'User'
+      }
+    })
     .then(user => {
       app.locals.user = user;
       next()

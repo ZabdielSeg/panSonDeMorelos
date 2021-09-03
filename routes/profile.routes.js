@@ -10,7 +10,7 @@ router.get('/my-profile', isLoggedIn, (req, res, next) => {
     const id = req.user._id;
     User.findById(id)
         .populate('panes')
-        .then(() => {res.render('user/profile');})
+        .then(() => { res.render('user/profile'); })
         .catch(err => next(err));
 });
 
@@ -18,8 +18,8 @@ router.get('/my-profile', isLoggedIn, (req, res, next) => {
 router.get('/my-profile/edit-profile', isLoggedIn, (req, res) => {
     const id = req.user._id;
     let allCities = [
-        'Amacuzac', 'Atlatlahucan', 'Axochiapan','Ayala','Coatetelco','Coatlán del Río','Cuautla','Cuernavaca','Emiliano Zapata','Hueyapan','Huitzilac','Jantetelco','Jiutepec','Jojutla','Jonacatepec de Leandro Valle','Mazatepec','Miacatlán','Ocuituco','Puente de Ixtla','Temixco','Temoac','Tepalcingo','Tepoztlán','Tetecala','Tetela del Volcán','Tlalnepantla','Tlaltizapán de Zapata','Tlaquiltenango','Tlayacapan','Totolapan','Xochitepec','Xoxocotla','Yautepec','Yecapixtla','Zacatepec','Zacualpan de Amilpas'
-      ];
+        'Amacuzac', 'Atlatlahucan', 'Axochiapan', 'Ayala', 'Coatetelco', 'Coatlán del Río', 'Cuautla', 'Cuernavaca', 'Emiliano Zapata', 'Hueyapan', 'Huitzilac', 'Jantetelco', 'Jiutepec', 'Jojutla', 'Jonacatepec de Leandro Valle', 'Mazatepec', 'Miacatlán', 'Ocuituco', 'Puente de Ixtla', 'Temixco', 'Temoac', 'Tepalcingo', 'Tepoztlán', 'Tetecala', 'Tetela del Volcán', 'Tlalnepantla', 'Tlaltizapán de Zapata', 'Tlaquiltenango', 'Tlayacapan', 'Totolapan', 'Xochitepec', 'Xoxocotla', 'Yautepec', 'Yecapixtla', 'Zacatepec', 'Zacualpan de Amilpas'
+    ];
 
     User.findById(id)
         .then(user => {
@@ -41,7 +41,7 @@ router.post('/my-profile/edit-profile', fileUploader.single('newProfileImageUrl'
         profileImageUrl = req.body.existingImage;
     }
 
-    User.findByIdAndUpdate(id, { username, citiesWhereFound, description, profileImageUrl }, {new: true})
+    User.findByIdAndUpdate(id, { username, citiesWhereFound, description, profileImageUrl }, { new: true })
         .then(() => res.redirect('/my-profile'))
         .catch(err => next(err));
 });
@@ -50,7 +50,7 @@ router.post('/my-profile/edit-profile', fileUploader.single('newProfileImageUrl'
 router.get('/see-profile/:username', isLoggedIn, (req, res, next) => {
     const { username } = req.params;
 
-    User.findOne({username})
+    User.findOne({ username })
         .populate('panes')
         .populate({
             path: 'reviews',
@@ -60,7 +60,8 @@ router.get('/see-profile/:username', isLoggedIn, (req, res, next) => {
             }
         })
         .then(user => {
-            res.render('user/see-profile', {userInfo: user})})
+            res.render('user/see-profile', { userInfo: user })
+        })
         .catch(err => next(err));
 });
 
