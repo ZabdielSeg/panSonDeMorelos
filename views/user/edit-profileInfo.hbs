@@ -1,0 +1,43 @@
+<div class="signup-form">
+<h2>Here you can edit yor profile</h2>
+
+<form action="/my-profile/edit-profile" method="POST" id="form-container" enctype="multipart/form-data">
+  <label for="username">Your name</label>
+  <input id="username" type="text" name="username" value='{{{user.username}}}'>
+
+  <br><br>
+
+  <label for="cities-input">Select the city or cities where people can find you
+    <select name="citiesWhereFound" multiple>
+      {{#each user.citiesWhereFound}}
+      <option value="{{this}}" selected>{{this}}</option>
+      {{/each}}
+      {{#each allCities}}
+      <option value="{{this}}">{{this}}</option>
+      {{/each}}
+    </select>
+  </label>
+
+
+  <br><br>
+
+  <label> Description: </label>
+  <textarea type="text" name="description" cols="40" rows="8">{{user.description}}</textarea>
+
+  <br><br>
+
+  <label for="image-input">Image:</label>
+        <input type="file" name="newProfileImageUrl" id="image-input" class="form-control-file" />
+        <input type="hidden" name="existingImage" id=""  value="{{user.profileImageUrl}}"/>
+
+  <br><br>
+
+  {{#if errorMessage }}
+  <div class="error-message">{{ errorMessage }}</div>
+  {{/if}}
+
+  <br><br>
+
+  <button>Update account</button>
+</form>
+</div>

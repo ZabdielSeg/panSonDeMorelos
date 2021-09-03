@@ -1,2 +1,17 @@
-<h1>{{title}} 🚀</h1>
-<p>Welcome Ironhacker!</p>
+{{#each allUsers}}
+<div class="index-card">
+    <div class="image-and-title">
+        <img class="index-profile" src="{{profileImageUrl}}" alt="">
+        <p>{{username}}</p>
+    </div>
+    <div class="info-index">
+        <article><i>{{description}}</i></article>
+        <div>
+            <h4>Cities where you can find us:</h4>
+            <p>{{citiesWhereFound}} </p>
+        </div>
+        <a href="/see-profile/{{username}}">Click here to see more</a>
+    </div>
+    
+</div>
+{{/each}}

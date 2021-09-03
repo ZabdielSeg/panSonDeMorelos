@@ -11,13 +11,13 @@ const panSchema = new Schema(
             type: String,
             required: [true, 'Please tell us about this pan'],
             minlength: 30,
-            maxlength: 250
+            maxlength: 150
         },
         imageUrl: {
-            type: String,
-            required: [true, 'An image is necessary']
+            type: String
+            // required: [true, 'An image is necessary']
         },
-        owner: [{ type: Schema.Types.ObjectId, ref: "User" }],
+        owner: { type: Schema.Types.ObjectId, ref: "User" },
         reviews: [{ type: Schema.Types.ObjectId, ref: "Review" }]
     }, 
     {

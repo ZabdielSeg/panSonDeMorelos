@@ -1,0 +1,30 @@
+<div class="signup-form">
+  <h2>Here you can eidt a pan</h2>
+
+  <form action="/edit-pan/{{pan._id}}" method="POST" id="form-container" enctype="multipart/form-data">
+    <label for="name">Name of the pan</label>
+    <input id="name" type="text" name="name" value="{{pan.name}}">
+
+    <br><br>
+
+    <label> Description:
+      <textarea type="text" name="description" cols="40" rows="8">{{pan.description}}</textarea>
+    </label>
+
+    <br><br>
+
+    <label for="image-input">Image:</label>
+        <input type="file" name="imageUrl" id="image-input" class="form-control-file" />
+        <input type="hidden" name="existingImage" id=""  value="{{pan.imageUrl}}"/>
+
+    <br><br>
+
+    {{#if errorMessage }}
+    <div class="error-message">{{ errorMessage }}</div>
+    {{/if}}
+
+    <br><br>
+
+    <button>Update pan</button>
+  </form>
+</div>

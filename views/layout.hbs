@@ -10,19 +10,39 @@
    </head>
 
    <nav>
+      <h2><a href="/">PanSonDeMorelos</a></h2>
       {{#if user}}
-      <p><b>Welcome {{user.username}}</b></p>
-      <a href="/logout">Logout</a>
+      <div class="username-and-image">
+         {{#if user.profileImageUrl}}
+         <img src="{{user.profileImageUrl}}" alt="" class="user-image">
+         <p><b>Welcome {{user.username}}</b></p>
+         {{else}}
+         <p><b>Welcome {{user.username}}</b></p>
+         {{/if}}
+      </div>
+      <ul class="userOn">
+         <li><a href="/" class="effect"><span>Main page</span></a></li>
+         <li><a href="/my-profile" class="effect"><span>My profile</span></a></li>
+         <li><a href="/create-post" class="effect"><span>Add a pan</span></a></li>
+         <li><a href="/logout" class="effect"><span>Logout</span></a></li>
+      </ul> 
       {{else}}
-      <a href="/signup">Signup</a>
-      <a href="/login">Login</a>
+      <ul class="userOff">
+         <li><a href="/signup" class="effect"><span>Signup</span></a></li>
+         <li><a href="/login" class="effect"><span>Login</span></a></li>
+      </ul>
       {{/if}}
    </nav>
 
    <body>
 
-      {{{body}}}
+      <div class="main-container">
+         {{{body}}}
+      </div>
 
+      <footer>
+         <h4>Follow us in Instagram: </h4>
+      </footer>
       <script src="/js/script.js"></script>
    </body>
 

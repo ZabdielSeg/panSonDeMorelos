@@ -1,0 +1,53 @@
+{{#with userInfo}}
+<div class="title-info">
+    <h2 id="bakeryId" data-id="{{_id}}" class="title">{{username}}</h2>
+    <p class="see-profile-info"><i>"{{description}}"</i></p>
+</div>
+<div class="visit-profile">
+    <div>
+        <img src="{{profileImageUrl}}" alt="">
+    </div>
+    <div>
+        {{#each panes}}
+        <div class="each-panes">
+            <h3>{{name}}</h3>
+            <div>
+                <img src="{{imageUrl}}" alt="">
+                <p><i>{{description}}</i></p>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    <div>
+        {{#if reviews}}
+        {{#each reviews}}
+        <p>{{owner.username}}</p>
+        <p>{{comment}}</p>
+        {{/each}}
+        {{else}}
+        <p>No comments yet</p>
+        <p>Make a comment of this place:</p>
+        {{/if}}
+        <form action="/comment-panaderia" method="post">
+            <textarea name="comment" rows="3"></textarea>
+            <input type="hidden" name="id" id="" value="{{_id}}">
+            <input type="hidden" name="username" id="" value="{{{username}}}">
+            <button type="submit">Create Review</button>
+        </form>
+    </div>
+</div>
+<p>{{citiesWhereFound}}</p>
+{{#if location.coordinates}}
+<div id="mymap"></div>
+{{else}}
+<h4>Add a map</h4>
+{{/if}}
+{{/with}}
+
+<!--  Axios CDN  -->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<!--  Google Maps Key  -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJes2aBMTuU0VZoWtQF9c2RK_yLBBk9EM">
+</script>
+<!--  Connect main.js  -->
+<script type="text/javascript" src="/js/addMap.js"></script>

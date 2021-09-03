@@ -21,6 +21,7 @@ const path = require("path");
 // https://www.npmjs.com/package/express-session
 const session = require("express-session");
 
+const flash = require('connect-flash');
 // ℹ️ MongoStore in order to save the user session in the database
 // https://www.npmjs.com/package/connect-mongo
 const MongoStore = require("connect-mongo");
@@ -62,4 +63,6 @@ module.exports = (app) => {
       }),
     })
   );
+
+  app.use(flash());
 };

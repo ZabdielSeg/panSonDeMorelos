@@ -1,0 +1,29 @@
+<div class="signup-form">
+  <h2>Here you can create a pan</h2>
+
+  <form action="/create-post" method="POST" id="form-container" enctype="multipart/form-data">
+    <label for="name">Name of the pan</label>
+    <input id="name" type="text" name="name" placeholder="Croissant">
+
+    <br><br>
+
+    <label> Description:
+      <textarea type="text" name="description" cols="40" rows="8"></textarea>
+    </label>
+
+    <br><br>
+
+    <label for="image-input">Image:</label>
+    <input type="file" name="imageUrl" id="image-input" class="form-control-file" />
+
+    <br><br>
+
+    {{#if errorMessage }}
+    <div class="error-message">{{ errorMessage }}</div>
+    {{/if}}
+
+    <br><br>
+
+    <button>Create pan</button>
+  </form>
+</div>

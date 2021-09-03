@@ -1,0 +1,13 @@
+<div>
+<h2>Your profile {{user.username}}</h2>
+<a href="/create-post">Add a pan to the list</a>
+<a href="/my-profile/edit-profile">Edit my Info</a>
+</div>
+{{#each user.panes}}
+<div class="each-user-pan-card">
+    <img src="{{imageUrl}}" alt="pan-picture" width="50px">
+    <p>{{name}}</p>
+    <p>{{description}}</p>
+    <a href="/edit-pan/{{_id}}">Edit pan</a>
+</div>
+{{/each}}

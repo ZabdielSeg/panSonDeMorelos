@@ -1,31 +1,65 @@
-<h2>Signup</h2>
-
-<form action="/signup" method="POST" id="form-container">
-  <label for="username">Your name</label>
-  <input id="username" type="text" name="username" placeholder="JonSnow">
-
-  <br><br>
-
-  <label for="email">Email</label>
-  <input id="email" type="email" name="email" placeholder="youremail@example.com">
+<div class="signup-form">
+  <h2>Register</h2>
 
 
-  <br><br>
-
-  <label for="password">Password</label>
-  <input id="password" type="password" name="password" placeholder="Your password">
-  <br>
   {{#if errorMessage }}
-    <div class="error-message">{{ errorMessage }}</div>
+  <div class="error-message">{{ errorMessage }}</div>
   {{/if}}
 
-  <br><br>
+  <form action="/signup" method="POST" id="form-container" enctype="multipart/form-data">
+    <label for="username">Your name:</label>
+    <input id="username" type="text" name="username" placeholder="JonSnow">
 
-  <button>Create account</button>
+    <br><br>
 
-  <p class="account-message">
-    Do you already have an account?
-    <a href="/login">Login</a>
-  </p>
-</form>
-   
+    <label for="email">Email:</label>
+    <input id="email" type="email" name="email" placeholder="youremail@example.com">
+
+
+    <br><br>
+
+    <label for="password">Password:</label>
+    <input id="password" type="password" name="password" placeholder="Your password">
+
+    <br><br>
+
+    <label for="isBakery">I sell pan: </label>
+    <input name="isBakery" type="checkbox" id="isBakery">
+
+
+    <br><br>
+
+    <label for="cities-input">Select the city or cities where people can find you</label>
+    <p>To choose more than one city, press ctrl and click</p>
+    <select name="citiesWhereFound" multiple>
+      <option disable selected></option>
+      {{#each allCities}}
+      <option value="{{this}}">{{this}}</option>
+      {{/each}}
+    </select>
+
+    <br><br>
+
+    <label> Description: </label>
+    <textarea type="text" name="description" cols="40" rows="8"></textarea>
+
+
+    <br><br>
+
+    <label for="image-input">Image:</label>
+    <input type="file" name="profileImageUrl" id="image-input" class="form-control-file" />
+
+    <br><br>
+
+    <button>Create account</button>
+
+    <br>
+    <div class="login-social-media">
+      <p class="account-message">
+        Already an user?
+        <a href="/login">Login</a>
+      </p>
+    </div>
+  </form>
+</div>
+
