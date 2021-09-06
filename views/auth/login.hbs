@@ -1,13 +1,13 @@
 <div class="signup-form">
    <form action="/login" method="POST">
       <label for="email">Email</label>
-      <input id="email" type="email" name="email" placeholder="youremail@example.com">
+      <input id="email" type="email" name="email" placeholder="youremail@example.com" required>
 
 
       <br><br>
 
       <label for="password">Password</label>
-      <input id="password" type="password" name="password" placeholder="Your password">
+      <input id="password" type="password" name="password" placeholder="Your password" required>
       <br>
       {{#if errorMessage }}
       <div class="error-message">{{ errorMessage }}</div>

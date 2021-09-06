@@ -49,20 +49,20 @@ router.post("/signup", fileUploader.single('profileImageUrl'), isLoggedOut, (req
       .render("auth/signup", { errorMessage: "Your name must not be longer than 25 characters", allCities: allCities });
   }
 
-  // if (password.length < 8) {
-  //   return res.status(400).render("auth/signup", {
-  //     errorMessage: "Your password needs to be at least 8 characters long.",
-  //   });
-  // }
+  if (password.length < 8) {
+    return res.status(400).render("auth/signup", {
+      errorMessage: "Your password needs to be at least 8 characters long.",
+    });
+  }
 
   //   ! This use case is using a regular expression to control for special characters and min length
   const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
 
-  // if (!regex.test(password)) {
-  //   return res.status(400).render("auth/signup", {
-  //     errorMessage: "Password needs to have at least 8 chars and must contain at least one number, one lowercase and one uppercase letter.", allCities: allCities
-  //   });
-  // }
+  if (!regex.test(password)) {
+    return res.status(400).render("auth/signup", {
+      errorMessage: "Password needs to have at least 8 chars and must contain at least one number, one lowercase and one uppercase letter.", allCities: allCities
+    });
+  }
 
   // Search the database for a user with the username submitted in the form
   User.findOne({ username }).then((found) => {
@@ -92,11 +92,7 @@ router.post("/signup", fileUploader.single('profileImageUrl'), isLoggedOut, (req
           }
         });
       })
-      .then((user) => {
-        // Bind the user to the session object
-        // req.session.user = user;
-        res.redirect("/login");
-      })
+      .then(() => res.redirect("/login"))
       .catch((error) => {
         if (error instanceof mongoose.Error.ValidationError) {
           return res

@@ -6,6 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <title>{{title}}</title>
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <link rel="stylesheet" href="/stylesheets/style.css" />
    </head>
 
@@ -21,10 +22,11 @@
          {{/if}}
       </div>
       <ul>
-         <li><a href="/" class="effect"><span>Main page</span></a></li>
+         {{!-- <li><a href="/" class="effect"><span>Main page</span></a></li> --}}
          <li><a href="/my-profile" class="effect"><span>My profile</span></a></li>
          {{#if user.isBakery}}
          <li><a href="/create-post" class="effect"><span>Add a pan</span></a></li>
+         <li><a href="/my-profile/edit-profile" class="effect"><span>Edit my Info</span></a></li>
          {{/if}}
          <li><a href="/logout" class="effect"><span>Logout</span></a></li>
       </ul> 

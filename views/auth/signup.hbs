@@ -8,18 +8,18 @@
 
   <form action="/signup" method="POST" id="form-container" enctype="multipart/form-data">
     <label for="username">Your name:</label>
-    <input id="username" type="text" name="username" placeholder="JonSnow">
+    <input id="username" type="text" name="username" placeholder="JonSnow" required>
 
     <br><br>
 
     <label for="email">Email:</label>
-    <input id="email" type="email" name="email" placeholder="youremail@example.com">
+    <input id="email" type="email" name="email" placeholder="youremail@example.com" required>
 
 
     <br><br>
 
     <label for="password">Password:</label>
-    <input id="password" type="password" name="password" placeholder="Your password">
+    <input id="password" type="password" name="password" placeholder="Your password" minlength="8" maxlength="16" title="Password needs to have at least 8 chars and must contain at least one number, one lowercase and one uppercase letter." pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$" required>
 
     <br><br>
 

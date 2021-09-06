@@ -6,7 +6,7 @@ const userSchema = new Schema(
     username: {
       type: String,
       required: [true, 'Your name is required'],
-      // max-length: 25,
+      maxLength: 25,
       trim: true
     },
     email: {
@@ -17,9 +17,9 @@ const userSchema = new Schema(
       lowercase: true
     },
     password: {
-      type: String
-      // required: [true, 'Password is required'],
-      // match: [/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/, 'Password needs to have at least 8 chars and must contain at least one number, one lowercase and one uppercase letter.']
+      type: String,
+      required: [true, 'Password is required'],
+      match: [/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/, 'Password needs to have at least 8 chars and must contain at least one number, one lowercase and one uppercase letter.']
     },
     profileImageUrl: String,
     panes: [{ type: Schema.Types.ObjectId, ref: "Pan" }],

@@ -10,7 +10,7 @@ router.get('/my-profile', isLoggedIn, (req, res, next) => {
     const id = req.user._id;
     User.findById(id)
         .populate('panes')
-        .then(() => { res.render('user/profile'); })
+        .then(() => res.render('user/profile'))
         .catch(err => next(err));
 });
 
@@ -31,7 +31,7 @@ router.get('/my-profile/edit-profile', isLoggedIn, (req, res) => {
 
 router.post('/my-profile/edit-profile', fileUploader.single('newProfileImageUrl'), isLoggedIn, (req, res, next) => {
     const id = req.user._id;
-    const { username, citiesWhereFound, description } = req.body;
+    const { username, citiesWhereFound, description, longitude, latitude } = req.body;
     console.log(citiesWhereFound);
 
     let profileImageUrl;
@@ -41,7 +41,11 @@ router.post('/my-profile/edit-profile', fileUploader.single('newProfileImageUrl'
         profileImageUrl = req.body.existingImage;
     }
 
-    User.findByIdAndUpdate(id, { username, citiesWhereFound, description, profileImageUrl }, { new: true })
+    User.findByIdAndUpdate(id, { username, citiesWhereFound, description, profileImageUrl, 
+        location: {
+          type: 'Point',
+          coordinates: [longitude, latitude]
+        } }, { new: true })
         .then(() => res.redirect('/my-profile'))
         .catch(err => next(err));
 });

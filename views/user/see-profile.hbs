@@ -28,8 +28,10 @@
     <div>
         {{#if reviews}}
         {{#each reviews}}
-        <p>{{owner.username}}</p>
-        <p>{{comment}}</p>
+        <div class="review-box">
+            <p>{{owner.username}} says: </p>
+            <p>{{comment}}</p>
+        </div>
         {{/each}}
         {{else}}
         <p>No comments yet</p>

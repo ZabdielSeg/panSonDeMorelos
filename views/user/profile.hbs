@@ -1,36 +1,50 @@
-<h2 id="bakeryId" data-id="{{user._id}}">Your profile {{user.username}}</h2>
-<div>
-    <a href="/create-post">Add a pan to the list</a>
-    <a href="/my-profile/edit-profile">Edit my Info</a>
+<div class="my-profile-info">
+    <h2 id="bakeryId" data-id="{{user._id}}">Your profile {{user.username}}</h2>
+    {{!-- <div> --}}
+    {{!-- <a href="/my-profile/edit-profile">Edit my Info</a> --}}
+    {{!-- </div> --}}
 </div>
-<div>
-    <img src="{{user.profileImageUrl}}" alt="" width="100px">
-    <p>{{user.description}}</p>
+<div class="my-profile-image-and-description">
+    <img src="{{user.profileImageUrl}}" alt="" >
+    <p><i>{{user.description}}</i></p>
 </div>
-<div>
-    <div>
-    {{#each user.panes}}
-    <div>
-        <img src="{{imageUrl}}" alt="pan-picture" width="50px">
-        <p>{{name}}</p>
-        <p>{{description}}</p>
-        <a href="/edit-pan/{{_id}}">Edit pan</a>
-    </div>
-    {{/each}}
-    </div>
-    <div>
-        {{#each user.reviews}}
-        <p>{{owner.username}}</p>
-        <p>{{comment}}</p>
+<div class="my-profile-panes-and-reviews">
+    <div class="panes-space">
+        {{#if user.panes}}
+        {{#each user.panes}}
+        <div class="each-panes">
+            <h3>{{name}}</h3>
+            <div>
+            <img src="{{imageUrl}}" alt="pan-picture">
+            <p>{{description}} 
+                <br> 
+                <a href="/edit-pan/{{_id}}">Edit pan</a></p>
+            </div>
+        </div>
         {{/each}}
+        {{else}}
+        <h2 class="empty">You haven't posted anything yet</h2>
+        {{/if}}
+    </div>
+    <div class="reviews-space">
+        {{#if user.reviews}}
+        {{#each user.reviews}}
+        <div class="review-box">
+            <p>{{owner.username}} says:</p>
+            <p>{{comment}}</p>
+        </div>
+        {{/each}}
+        {{else}}
+        <h2 class="empty">You don't have comments</h2>
+        {{/if}}
     </div>
 </div>
-<div>
+<div class="my-profile-map">
     {{#if user.location.coordinates}}
     <p>The main bakery is here:</p>
     <div id="mymap"></div>
     {{else}}
-    <p>Let the others know where the main bakery is. Add latitude and longitud to your <a href="/my-profile/edit-profile">information</a></p>
+    <p>Let the others know where the main bakery is. Add latitude and longitude to your <a href="/my-profile/edit-profile">information</a></p>
     {{/if}}
 </div>
 
