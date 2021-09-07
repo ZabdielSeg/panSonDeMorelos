@@ -39,7 +39,7 @@ nav, .main-container, input, select, textarea, .index-profile, .info-index artic
 nav {
   justify-content: space-between;
   height: 60px;
-  background-color: #8f691888;
+  background-color: rgba(184, 184, 184, 0.589);
 }
 
 a {
@@ -361,10 +361,12 @@ button {
 }
 
 footer {
+  margin-top: 10px;
   height: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: rgba(151, 151, 151, 0.589);
 }
 
 
