@@ -5,14 +5,10 @@ const isLoggedIn = require("../middleware/isLoggedIn");
 
 const fileUploader = require('../config/cloudinary.config');
 
+const googleMaps = process.env.MAPS_API_KEY;
+
 ////////// MAIN PROFILE ////////
-router.get('/my-profile', isLoggedIn, (req, res, next) => {
-    const id = req.user._id;
-    User.findById(id)
-        .populate('panes')
-        .then(() => res.render('user/profile'))
-        .catch(err => next(err));
-});
+router.get('/my-profile', isLoggedIn, (req, res, next) => res.render('user/profile', { googleMaps }));
 
 ////// EDIT PROFILE INFO ////////
 router.get('/my-profile/edit-profile', isLoggedIn, (req, res) => {
@@ -64,7 +60,7 @@ router.get('/see-profile/:username', isLoggedIn, (req, res, next) => {
             }
         })
         .then(user => {
-            res.render('user/see-profile', { userInfo: user })
+            res.render('user/see-profile', { userInfo: user, googleMaps })
         })
         .catch(err => next(err));
 });
