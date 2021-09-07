@@ -14,8 +14,8 @@ const panSchema = new Schema(
             maxlength: 150
         },
         imageUrl: {
-            type: String
-            // required: [true, 'An image is necessary']
+            type: String,
+            required: [true, 'An image is necessary']
         },
         owner: { type: Schema.Types.ObjectId, ref: "User" },
         reviews: [{ type: Schema.Types.ObjectId, ref: "Review" }]

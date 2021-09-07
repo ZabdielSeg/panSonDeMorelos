@@ -9,7 +9,6 @@ cloudinary.config({
 });
 
 const storage = new CloudinaryStorage({
-  // cloudinary: cloudinary,
   cloudinary,
   folder: 'panSonDeMorelos', // The name of the folder in cloudinary
   allowedFormats: ['jpg', 'png'],
@@ -19,7 +18,6 @@ const storage = new CloudinaryStorage({
   }
 });
 
-//                        storage: storage
 const uploadCloud = multer({ storage });
 
 module.exports = uploadCloud;

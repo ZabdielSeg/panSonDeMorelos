@@ -5,8 +5,8 @@ const User = require('../models/User.model');
 passport.use(
     new GoogleStrategy(
         {
-            clientID: "586011585871-q98n0rbpe24rrl7qdfddu71ms3ubumpl.apps.googleusercontent.com",
-            clientSecret: "tzkyG-52eK_-0euG66EI1pkN",
+            clientID: process.env.CLIEN_ID,
+            clientSecret: process.env.CLIENT_SECRET,
             callbackURL: "/auth/google/callback"
         },
         (accessToken, refreshToken, profile, done) => {
@@ -16,9 +16,6 @@ passport.use(
             User.findOne({ googleID: profile.id })
                 .then(user => {
                     if (user) {
-                        // User.findOneAndUpdate({ googleID: profile.id }, { username: profile.displayName, profileImageUrl: profile._json.picture }, { new: true })
-                        //     .then(() => done(null))
-                        //     .catch(err => done(err))
                         done(null, user);
                         return;
                     }
