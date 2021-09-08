@@ -80,6 +80,7 @@ ul li {
   margin: 30px 0;
   justify-content: space-evenly;
   border-radius: 10px;
+  min-height: 499px;
 }
 
 form {

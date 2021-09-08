@@ -1,11 +1,11 @@
 <div class="my-profile-info">
     <h2 id="bakeryId" data-id="{{user._id}}">Your profile {{user.username}}</h2>
     {{!-- <div> --}}
-    {{!-- <a href="/my-profile/edit-profile">Edit my Info</a> --}}
-    {{!-- </div> --}}
+        {{!-- <a href="/my-profile/edit-profile">Edit my Info</a> --}}
+        {{!-- </div> --}}
 </div>
 <div class="my-profile-image-and-description">
-    <img src="{{user.profileImageUrl}}" alt="" >
+    <img src="{{user.profileImageUrl}}" alt="">
     <p><i>{{user.description}}</i></p>
 </div>
 <div class="my-profile-panes-and-reviews">
@@ -15,10 +15,14 @@
         <div class="each-panes">
             <h3>{{name}}</h3>
             <div>
-            <img src="{{imageUrl}}" alt="pan-picture">
-            <p>{{description}} 
-                <br> 
-                <a href="/edit-pan/{{_id}}">Edit pan</a></p>
+                <img src="{{imageUrl}}" alt="pan-picture">
+                <p>{{description}}
+                    <br>
+                    <a href="/edit-pan/{{_id}}">Edit pan</a>    
+                    <form action="/delete-pan/{{_id}}" method="post">
+                    <input type="submit" name="" id="" value="Delete pan">
+                    </form>
+                </p>
             </div>
         </div>
         {{/each}}
@@ -44,7 +48,8 @@
     <p>The main bakery is here:</p>
     <div id="mymap"></div>
     {{else}}
-    <p>Let the others know where the main bakery is. Add latitude and longitude to your <a href="/my-profile/edit-profile">information</a></p>
+    <p>Let the others know where the main bakery is. Add latitude and longitude to your <a
+            href="/my-profile/edit-profile">information</a></p>
     {{/if}}
 </div>
 
