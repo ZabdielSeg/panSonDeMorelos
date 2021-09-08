@@ -69,7 +69,7 @@ ul li {
 }
 
 .main-container {
-  min-height: 500px;
+  min-height: 560px;
   justify-content: space-around;
   box-sizing: border-box;
   flex-wrap: wrap;
