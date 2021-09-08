@@ -12,7 +12,7 @@ router.post('/create-comment', isLoggedIn, (req, res, next) => {
     Review.create({ user: req.user.id, comment })
         .then(review => Pan.findByIdAndUpdate(id, {$push: {reviews: review._id}}))
         .then(() => res.redirect('/'))
-        .catch(err => next(err))
+        .catch(err => next(err));
 });
 
 router.post('/comment-panaderia', isLoggedIn, (req, res, next) => {
@@ -23,7 +23,7 @@ router.post('/comment-panaderia', isLoggedIn, (req, res, next) => {
     Review.create({ owner, comment })
         .then(review => User.findByIdAndUpdate(id, {$push: {reviews: review._id}}))
         .then(() => res.redirect('/see-profile/'.concat(username)))
-        .catch(err => next(err))
+        .catch(err => next(err));
 });
 
 router.post('/delete-comment/:id', isLoggedIn, (req, res, next) => {
