@@ -6,7 +6,6 @@ window.addEventListener('load', () => {
       axios
         .get(`/panSonDeMorelos/api/${bakeryId}`)
         .then(response => {
-          console.log(response.data.user);
           placeRestaurant(response.data.user);
         })
         .catch(error => {
@@ -37,7 +36,7 @@ window.addEventListener('load', () => {
             map.setCenter(user_location);
        
             // Add a marker for your user location
-            const ironhackBCNMarker = new google.maps.Marker({
+            const userLocation = new google.maps.Marker({
               position: {
                 lat: user_location.lat,
                 lng: user_location.lng
