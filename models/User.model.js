@@ -18,7 +18,6 @@ const userSchema = new Schema(
     },
     password: {
       type: String,
-      required: [true, 'Password is required'],
       match: [/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/, 'Password needs to have at least 8 chars and must contain at least one number, one lowercase and one uppercase letter.']
     },
     profileImageUrl: String,

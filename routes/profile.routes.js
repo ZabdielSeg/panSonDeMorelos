@@ -28,6 +28,7 @@ router.get('/my-profile/edit-profile', isLoggedIn, (req, res) => {
 router.post('/my-profile/edit-profile', fileUploader.single('newProfileImageUrl'), isLoggedIn, (req, res, next) => {
     const id = req.user._id;
     const { username, citiesWhereFound, description, longitude, latitude } = req.body;
+    
     let profileImageUrl;
     if (req.file) {
         profileImageUrl = req.file.path;
@@ -35,11 +36,15 @@ router.post('/my-profile/edit-profile', fileUploader.single('newProfileImageUrl'
         profileImageUrl = req.body.existingImage;
     }
 
-    User.findByIdAndUpdate(id, { username, citiesWhereFound, description, profileImageUrl, 
-        location: {
-          type: 'Point',
-          coordinates: [longitude, latitude]
-        } }, { new: true })
+    let location;
+
+    if(!longitude && !latitude) {
+      location = { type: 'Point', coordinates: []};
+    } else {
+      location = {type: 'Point', coordinates: [longitude, latitude]};
+    }
+
+    User.findByIdAndUpdate(id, { username, citiesWhereFound, description, profileImageUrl, location }, { new: true })
         .then(() => res.redirect('/my-profile'))
         .catch(err => next(err));
 });

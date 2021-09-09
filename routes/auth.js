@@ -49,12 +49,6 @@ router.post("/signup", fileUploader.single('profileImageUrl'), isLoggedOut, (req
       .render("auth/signup", { errorMessage: "Your name must not be longer than 25 characters", allCities: allCities });
   }
 
-  if (password.length < 8) {
-    return res.status(400).render("auth/signup", {
-      errorMessage: "Your password needs to be at least 8 characters long.",
-    });
-  }
-
   //   ! This use case is using a regular expression to control for special characters and min length
   const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
 
@@ -62,6 +56,22 @@ router.post("/signup", fileUploader.single('profileImageUrl'), isLoggedOut, (req
     return res.status(400).render("auth/signup", {
       errorMessage: "Password needs to have at least 8 chars and must contain at least one number, one lowercase and one uppercase letter.", allCities: allCities
     });
+  }
+
+  let profileImageUrl;
+
+  if(!req.file) {
+    profileImageUrl = '/images/Default-profile.jpg';
+  } else {
+    profileImageUrl = req.file.path;
+  }
+
+  let location;
+
+  if(!longitude && !latitude) {
+    location = { type: 'Point', coordinates: []};
+  } else {
+    location = {type: 'Point', coordinates: [longitude, latitude]};
   }
 
   // Search the database for a user with the username submitted in the form
@@ -85,12 +95,9 @@ router.post("/signup", fileUploader.single('profileImageUrl'), isLoggedOut, (req
           password: hashedPassword,
           citiesWhereFound,
           description,
-          profileImageUrl: req.file.path,
+          profileImageUrl,
           isBakery: Boolean(isBakery),
-          location: {
-            type: 'Point',
-            coordinates: [longitude, latitude]
-          }
+          location
         });
       })
       .then(() => res.redirect("/login"))
@@ -98,7 +105,7 @@ router.post("/signup", fileUploader.single('profileImageUrl'), isLoggedOut, (req
         if (error instanceof mongoose.Error.ValidationError) {
           return res
             .status(400)
-            .render("auth/signup", { errorMessage: error.message });
+            .render("auth/signup", { errorMessage: error.message, allCities });
         }
         if (error.code === 11000) {
           return res.status(400).render("auth/signup", {

@@ -3,12 +3,12 @@
 
   <form action="/edit-pan/{{pan._id}}" method="POST" id="form-container" enctype="multipart/form-data">
     <label for="name">Name of the pan</label>
-    <input id="name" type="text" name="name" value="{{pan.name}}">
+    <input id="name" type="text" name="name" value="{{pan.name}}" required>
 
     <br><br>
 
     <label> Description:
-      <textarea type="text" name="description" cols="40" rows="8">{{pan.description}}</textarea>
+      <textarea type="text" name="description" cols="40" rows="8" minlength="30" maxlength="150" required>{{pan.description}}</textarea>
     </label>
 
     <br><br>

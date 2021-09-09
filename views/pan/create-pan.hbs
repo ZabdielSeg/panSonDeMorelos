@@ -3,18 +3,18 @@
 
   <form action="/create-post" method="POST" id="form-container" enctype="multipart/form-data">
     <label for="name">Name of the pan</label>
-    <input id="name" type="text" name="name" placeholder="Croissant">
+    <input id="name" type="text" name="name" placeholder="Croissant" required>
 
     <br><br>
 
     <label> Description:
-      <textarea type="text" name="description" cols="40" rows="8"></textarea>
+      <textarea type="text" name="description" cols="40" rows="8" minlength="30" maxlength="150" required></textarea>
     </label>
 
     <br><br>
 
     <label for="image-input">Image:</label>
-    <input type="file" name="imageUrl" id="image-input" class="form-control-file" />
+    <input type="file" name="imageUrl" id="image-input" class="form-control-file" required>
 
     <br><br>
 
