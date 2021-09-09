@@ -23,7 +23,12 @@ window.addEventListener('load', () => {
           zoom: 12,
           center: center
         });
-        addMarker(center, map, restaurant.username);
+
+        const bakeryMarker = new google.maps.Marker({
+          position: center,
+          map: map,
+          label: restaurant.username
+        });
 
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function (position) {
@@ -51,17 +56,6 @@ window.addEventListener('load', () => {
         } else {
           console.log('Browser does not support geolocation.');
         }
-    }
-    
-      function addMarker(location, map, labels) {
-      // Add the marker at the clicked location, and add the next-available label
-      // from the array of alphabetical characters.
-      new google.maps.Marker({
-        position: location,
-        map: map,
-        label: labels
-      });
-    }
-     
+    }     
     getRestaurant();
   });
