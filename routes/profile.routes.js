@@ -28,8 +28,6 @@ router.get('/my-profile/edit-profile', isLoggedIn, (req, res) => {
 router.post('/my-profile/edit-profile', fileUploader.single('newProfileImageUrl'), isLoggedIn, (req, res, next) => {
     const id = req.user._id;
     const { username, citiesWhereFound, description, longitude, latitude } = req.body;
-    console.log(citiesWhereFound);
-
     let profileImageUrl;
     if (req.file) {
         profileImageUrl = req.file.path;
