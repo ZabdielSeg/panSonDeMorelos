@@ -69,7 +69,7 @@ router.post("/signup", fileUploader.single('profileImageUrl'), isLoggedOut, (req
   let location;
 
   if(!longitude && !latitude) {
-    location = { type: 'Point', coordinates: []};
+    location = { coordinates: []};
   } else {
     location = {type: 'Point', coordinates: [longitude, latitude]};
   }
