@@ -18,6 +18,12 @@ router.post('/create-comment', isLoggedIn, (req, res, next) => {
 router.post('/comment-panaderia', isLoggedIn, (req, res, next) => {
     const { id, comment, username } = req.body;
     const owner = req.user._id;
+
+    if(!comment) {
+        return res
+                .status(400)
+                .render('/see-profile/'.concat(username), {errorMessage: 'You cannot make an empty comment'});
+    }
     console.log(owner, comment, username);
 
     Review.create({ owner, comment })
