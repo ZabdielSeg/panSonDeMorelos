@@ -7,7 +7,7 @@ passport.use(
         {
             clientID: process.env.CLIENT_ID,
             clientSecret: process.env.CLIENT_SECRET,
-            callbackURL: "https://pansondemorelos.herokuapp.com/auth/google/callback"
+            callbackURL: "https://pansondemorelos-production.up.railway.app/auth/google/callback"
         },
         (accessToken, refreshToken, profile, done) => {
             // to see the structure of the data in received response:
