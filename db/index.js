@@ -13,6 +13,7 @@ mongoose
     useUnifiedTopology: true,
     useFindAndModify: false,
     useCreateIndex: true,
+    dbName: 'firstProject'
   })
   .then((x) => {
     console.log(
